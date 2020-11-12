@@ -1,0 +1,14 @@
+namespace: apps
+
+metadata:
+  maintainer: blairdrummond@protonmail.com
+  description: >-
+    A dashboard for the apps in the namespace.
+
+image:
+  image: blairdrummond/dashboard-dashboard
+  imagePullPolicy: Always
+
+host: apps.happylittlecloud.ca
+port: 80
+targetPort: 8000

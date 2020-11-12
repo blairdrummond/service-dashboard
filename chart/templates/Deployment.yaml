@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      serviceAccountName: {{ .Chart.Name }}-service-account
+      automountServiceAccountToken: true
+      imagePullPolicy: Always
+      {{ if .Values.imagePullSecrets }}
+      imagePullSecrets: 
+      {{ toYaml .Values.imagePullSecrets | nindent 6 }}
+      {{ end }}
+      containers:
+      - name: {{ .Chart.Name }}
+        {{ toYaml .Values.image | nindent 8 }}
+        ports:
+        - containerPort: {{ .Values.targetPort }}
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
