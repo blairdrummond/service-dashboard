@@ -4,6 +4,6 @@ A little golang app that scrapes its namespace for Kubernetes ingress-rules, and
 
 It supports French internationalization, and caches the api calls for 1 minute.
 
-[Example](apps.happylittlecloud.ca)
+[Example](https://apps.happylittlecloud.ca)
 
 ![Screenshot](screenshot.png)
