@@ -110,19 +110,6 @@ func AddMetaData(clientset *k8s.Clientset, s UserService) UserService {
 
 }
 
-/*  # Curl command for reference
-*   curl -s --user admin:dcfa2bad0c492539ea83a7c1ca546f85 --insecure https://10.0.0.249:6443/apis/extensions/v1beta1/namespaces/web/ingresses
-*      | jq -c '.items
-*               | .[]
-*               | .spec.rules
-*               | .[]
-*               | select(.host | startswith("www."))
-*               | .http.paths
-*               | .[]
-*               | { "service" : .backend.serviceName, "path" : .path }'
-*
- */
-
 /*  Scrape the ingress rules in this app's namespace for
 *   all backend services and paths.
 *
