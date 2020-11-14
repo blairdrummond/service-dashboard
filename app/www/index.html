@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AAW Services</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1 data-localize="title">AAW Dashboards</h1>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+						<section id="intro" class="main">
+							<table class="table">
+								<thead class="thead-dark">
+									<tr>
+										<th scope="col">
+											<p data-localize="table.name">Name</p>
+										</th>
+										<th scope="col">
+											<p data-localize="table.description">Description</p>
+										</th>
+										<th scope="col">
+											<p data-localize="table.url">URL</p>
+										</th>
+										<th scope="col">
+											<p data-localize="table.maintainer">Maintainer</p>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{{range .}}
+									<tr>
+										<th scope="row">{{.Name}}</th>
+										<td>{{.Description}}</td>
+										<td><a href="https://{{.URL}}">{{.URL}}</a></td>
+										<td><i>{{.Maintainer}}</i></td>
+									</tr>
+									{{end}}
+								</tbody>
+							</table>
+
+								<footer class="major">
+									<ul class="actions special">
+										<li><a href="https://github.com/statcan/daaas-dashboards" class="button"><p data-localize="repo">Full app repository</p></a></li>
+									</ul>
+								</footer>
+							</section>
+
+						<!-- First Section -->
+							<section id="first" class="main special">
+								<header class="major">
+									<h2 data-localize="technology">Technology</h2>
+								</header>
+
+								<ul class="features">
+									<li>
+										<span class="image fit"><img src="assets/images/Plotly_Dash_logo.png" alt="" /></span>
+									</li>
+									<li>
+										<span class="image fit"><img src="assets/images/RShiny_logo.png" alt="" /></span>
+									</li>
+								</ul>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Statistics Canada. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script type="text/javascript" src="assets/js/jquery.localize.min.js"></script>
+			<script>
+				$("[data-localize]").localize("assets/lang/index", { skipLanguage: /^en/ })
+			</script>
+	</body>
+</html>

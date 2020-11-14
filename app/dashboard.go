@@ -15,7 +15,7 @@ func main() {
 	client, _ := GetClient()
 
 	// The template to render
-	tmplt, err := template.ParseFiles("index.html")
+	tmplt, err := template.ParseFiles("/srv/index.html")
 	if err != nil {
 		log.Print("Failed")
 		panic(err.Error())
@@ -40,6 +40,8 @@ func main() {
 	port_str = fmt.Sprintf(":%s", port_str)
 
 	// Run the webserver
+	fs := http.FileServer(http.Dir("/srv/assets"))
+	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(port_str, nil))
 }

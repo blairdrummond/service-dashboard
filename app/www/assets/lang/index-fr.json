@@ -1,0 +1,11 @@
+{
+    "title" : "Tableaux de bord AAW",
+    "table" : {
+        "name" : "Nom",
+        "description" : "La Description",
+        "url" :  "URL",
+        "maintainer" : "Mainteneur"
+    },
+    "repo" : "Dépôt d'applications",
+    "technology" : "La Technologie"
+}

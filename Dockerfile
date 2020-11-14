@@ -19,7 +19,7 @@ RUN CGO_ENABLED=0 go build
 # Generate final image
 FROM scratch
 COPY --from=build /app/service-dashboard /service-dashboard
-COPY --from=build /app/index.html        /index.html
+COPY --from=build /app/www               /srv
 USER 1000
 
 EXPOSE 8000
