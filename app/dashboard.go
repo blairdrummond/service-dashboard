@@ -6,7 +6,16 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
+
+const cache_duration = "1m"
+
+// Cache the app list
+type AppCache struct {
+	apps      []UserService
+	timestamp time.Time
+}
 
 func main() {
 	log.Print("Starting up.")
@@ -21,15 +30,28 @@ func main() {
 		panic(err.Error())
 	}
 
+	// Start with an ancient timestamp, which will be invalidated.
+	cache := AppCache{make([]UserService, 0), time.Time{}}
+
+	timeout, err := time.ParseDuration(cache_duration)
+	if err != nil {
+		log.Print("Invalid cache duration.")
+		panic(err.Error())
+	}
+
 	// Define this way so that the handler holds the client
 	handler := func(response http.ResponseWriter, _ *http.Request) {
 
-		log.Print("Fetching Ingresses.")
-		services := GetApps(client)
+		if time.Since(cache.timestamp) > timeout {
+			log.Print("Fetching Ingresses.")
+			cache = AppCache{GetApps(client), time.Now()}
+		} else {
+			log.Print("Using cache.")
+		}
 
 		log.Print("Rendering")
 		// Sub in the services to the table
-		tmplt.Execute(response, services)
+		tmplt.Execute(response, cache.apps)
 	}
 
 	// Configure PORT via env var
